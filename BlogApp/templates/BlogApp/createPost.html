@@ -1,0 +1,22 @@
+{% extends "BlogApp/model.html" %}
+{% block content %}
+<div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <div class="p-3 border bg-light">Crear Post</div>
+        {% if form.error %}
+        <div class="alert alert-danger" role="alert">
+            Error en formulario
+          </div>
+        {% endif %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}

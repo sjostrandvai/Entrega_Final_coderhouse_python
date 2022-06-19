@@ -1,0 +1,21 @@
+{% extends "AccountsApp/model.html" %} {% block content %} {% if message %}
+<div class="alert alert-success" role="alert">{{message}}</div>
+{% endif %}
+<div class="container px-4">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3 border bg-light">Registro de usuario</div>
+      {% if form %}
+      <form action="" method="POST">
+        <table>
+          {% csrf_token %} {{form.as_table}}
+        </table>
+       
+        <button class="btn btn-primary" type="submit">Registrate!</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}

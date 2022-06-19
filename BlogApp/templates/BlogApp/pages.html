@@ -1,0 +1,37 @@
+{% extends "BlogApp/model.html" %} {% block content %}
+<div class="container px-4">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3 border bg-light">Posts:
+      {% if request.user.is_authenticated and request.user.is_admin or request.user.is_superuser %}
+      <a href="{% url 'createPost' %}">Crear Post</a>
+      {% endif %}
+    </div>
+      {% if posts %} {% for post in posts %}
+      <div class="card" style="width: 18rem">
+        {% if post.imagen %}
+        <img src="{{post.imagen.url}}" class="card-img-top" >
+        {% endif %}
+        <div class="card-body">
+          <h3 class="card-title">{{post.titulo}}</h3>
+          <h5 class="card-title">{{post.subtitulo}}</h5>
+          <p class="card-text">{{post.fecha_creacion}}</p>
+          <p class="card-text">{{post.autor}}</p>
+          <a href="{% url 'getPost' post.id %}" class="btn btn-primary">Leer más</a>
+          {% if request.user.is_authenticated and request.user.is_admin or request.user.is_superuser %}
+          <a href="{% url 'deletePost' post.id %}" class="btn btn-primary">Eliminar</a>
+          <a href="{% url 'editPost' post.id %}" class="btn btn-primary">Editar</a>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %} {% endif %} 
+      {% if not posts%}
+      <div class="alert alert-danger" role="alert">
+        No hay posts disponibles
+      </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock %}

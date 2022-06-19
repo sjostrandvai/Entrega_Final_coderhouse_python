@@ -1,0 +1,33 @@
+{% extends "BlogApp/model.html" %} {% block content %}
+<div class="container px-4">
+  <div class="row gx-5">
+    <div class="col">
+      <div class="p-3 border bg-light">Post</div>
+      <div class="card" style="width: 25rem">
+        <div class="card-body">
+          <h1 class="card-title">{{post.titulo}}</h1>
+          <h3 class="card-title">{{post.subtitulo}}</h3>
+          <h5 class="card-text">{{post.fecha_creacion}}</h5>
+          <h5 class="card-text">{{post.autor}}</h5>
+          <p class="card-text">{{post.contenido}}</p>
+          {% if post.imagen %}
+          <img src="{{post.imagen.url}}" class="card-img-top" />
+          {% endif %}
+          <a href="{% url 'addComment' post.id %}" class="btn btn-primary"
+            >Comentar</a
+          >
+        </div>
+      </div>
+      {% if comentarios %} {% for comentario in comentarios %}
+      <div class="card" style="width: 25rem">
+        <div class="card-body">
+          <h3 class="card-title">{{comentario.autor}}</h3>
+          <p class="card-text">{{comentario.comentario}}</p>
+          <p class="card-text">{{comentario.fecha_creacion}}</p>
+        </div>
+      </div>
+      {% endfor %} {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

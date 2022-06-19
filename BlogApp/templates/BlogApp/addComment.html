@@ -1,0 +1,30 @@
+{% extends "BlogApp/model.html" %} {% block content %}
+<div class="container px-4">
+  <div class="row gx-5">
+    <div class="col">
+        <div class="card" style="width: 25rem">
+          <div class="card-body">
+            <h1 class="card-title">{{post.titulo}}</h1>
+            <h3 class="card-title">{{post.subtitulo}}</h3>
+            <h5 class="card-text">{{post.fecha_creacion}}</h5>
+            <h5 class="card-text">{{post.autor}}</h5>
+            <p class="card-text">{{post.contenido}}</p>
+            {% if post.imagen %}
+            <img src="{{post.imagen.url}}" class="card-img-top" />
+            {% endif %}
+          </div>
+        </div>
+        {% if form %}
+        <form method="POST">
+          {% csrf_token %}
+          <table>
+            {{form.as_table}}
+          </table>
+          <button class="btn btn-primary" type="submit">Comentar</button>
+        </form>
+        {% endif %}
+      </div>
+   
+  </div>
+  {% endblock %}
+</div>

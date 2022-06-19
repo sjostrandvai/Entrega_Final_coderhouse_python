@@ -1,0 +1,17 @@
+{% extends "BlogApp/model.html" %}
+{% block content %}
+<div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <div class="p-3 border bg-light">Editar Post</div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <button class="btn btn-primary" type="submit">Confirmar Cambios</button>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}

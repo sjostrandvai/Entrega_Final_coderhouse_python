@@ -1,0 +1,37 @@
+{% extends "AccountsApp/model.html" %} {% block content %}
+{% if message %}
+<div class="alert alert-success" role="alert">
+    {{message}}
+   </div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{error}}
+   </div>
+   {% endif %}
+
+{% if not request.user.is_authenticated %}
+
+<div class="container px-4">
+    <div class="row gx-5">
+      <div class="col">
+        <div class="p-3 border bg-light">Bienvenidos al Blog de Jonathan</div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{form.as_table}}
+            </table>
+            <button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+        </form>
+        {% endif %}
+        {% if request.user.is_authenticated %}
+        <div class="alert alert-success" role="alert">
+            Already logged in
+           </div>
+        {% endif %}
+      
+    </div>
+    </div>
+</div>
+
+{% endblock %}
